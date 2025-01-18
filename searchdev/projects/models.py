@@ -2,17 +2,20 @@ from django.db import models
 import uuid
 
 from django.db.models.deletion import CASCADE
-#from users.models import Profile
 
 
 
 class Project(models.Model):
-    # owner = models.ForeignKey(
-    #     Profile, null=True, blank=True, on_delete=models.CASCADE
-    # )
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
-    # feature_image = models.ImageField(
-    #     null=True, blank=True, default="default.jpg"
-    # )
-# Create your models here.
+    demo_link = models.CharField(max_length=2000,null=True, blank=True)
+    source_link = models.CharField(max_length=2000,null=True, blank=True)
+    created = models.DateTimeField(default="2025-01-01T00:00:00")
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+
+    def __str__(self):
+        return self.title
+
+
+    
